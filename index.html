@@ -229,41 +229,43 @@ let DATA = {};
 let CONTENT = { about:{paragraphs:[]}, contact:{email:'',instagram:'#'}, works:[] };
 let GAME_INDEX = [];
 
+const SPORT_FILES = ['fussball', 'basketball', 'baseball', 'fcwinterlingen'];
+
 async function loadContent(){
   try{
-    const [homeRes, sportartenRes] = await Promise.all([
-      fetch('/data/home.json', {cache:'no-store'}),
-      fetch('/data/sportarten.json', {cache:'no-store'})
-    ]);
+    const homeRes = await fetch('/data/home.json', {cache:'no-store'});
     const home = await homeRes.json();
-    const manifest = await sportartenRes.json();
     CONTENT = { about: home.about, contact: home.contact, works: home.works };
 
+    const sportResults = await Promise.all(
+      SPORT_FILES.map(key =>
+        fetch(`/data/sport-${key}.json`, {cache:'no-store'})
+          .then(r => r.ok ? r.json() : null)
+          .catch(() => null)
+      )
+    );
+
     DATA = {};
-    const ligaFetches = [];
-    (manifest.sportarten || []).forEach(sport=>{
+    sportResults.forEach((sport, idx)=>{
+      if(!sport) return;
+      const sportKey = sport.key || SPORT_FILES[idx];
       const ligenObj = {};
       (sport.ligen || []).forEach(liga=>{
-        ligenObj[liga.key] = { label: liga.label, spiele: [] };
-        ligaFetches.push(
-          fetch(`/data/ligen/${sport.key}/${liga.key}.json`, {cache:'no-store'})
-            .then(r => r.ok ? r.json() : {spiele:[]})
-            .then(ligaData => {
-              ligenObj[liga.key].spiele = (ligaData.spiele || []).map((spiel, i)=>({
-                id: 'spiel-' + (i+1),
-                heim: spiel.heim,
-                gast: spiel.gast,
-                titel: `${spiel.heim} vs ${spiel.gast}`,
-                datum: spiel.datum,
-                fotos: spiel.fotos || []
-              }));
-            })
-            .catch(()=>{ ligenObj[liga.key].spiele = []; })
-        );
+        ligenObj[liga.key] = {
+          label: liga.label,
+          cover: liga.cover,
+          spiele: (liga.spiele || []).map((spiel, i)=>({
+            id: 'spiel-' + (i+1),
+            heim: spiel.heim,
+            gast: spiel.gast,
+            titel: `${spiel.heim} vs ${spiel.gast}`,
+            datum: spiel.datum,
+            fotos: spiel.fotos || []
+          }))
+        };
       });
-      DATA[sport.key] = { label: sport.label, cover: sport.cover, ligen: ligenObj };
+      DATA[sportKey] = { label: sport.label, cover: sport.cover, ligen: ligenObj };
     });
-    await Promise.all(ligaFetches);
   } catch(err){
     console.error('Inhalte konnten nicht geladen werden', err);
   }
@@ -531,7 +533,7 @@ function renderLigaauswahl(sportKey, sport){
     <div class="card-grid">
       ${Object.entries(sport.ligen).map(([key, liga])=>`
         <button class="tile" data-nav="#galerie/${sportKey}/${key}">
-          <div class="tile-img"><img src="${liga.spiele[0]?.fotos[0]?.url || sport.cover}" alt="${liga.label}" loading="lazy"></div>
+          <div class="tile-img"><img src="${liga.cover || sport.cover}" alt="${liga.label}" loading="lazy"></div>
           <div class="tile-body">
             <div class="tile-name">${liga.label}</div>
             <div class="tile-meta">${liga.spiele.length} SPIELE</div>
