@@ -1,0 +1,44 @@
+{
+  "key": "kreisliga",
+  "label": "Kreisliga",
+  "spiele": [
+    {
+      "heim": "Diamond Dogs",
+      "gast": "Creek Cats",
+      "datum": "27.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1018/800/1000",
+          "title": "Diamond Dogs vs Creek Cats · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1044/800/1000",
+          "title": "Diamond Dogs vs Creek Cats · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1035/800/1000",
+          "title": "Diamond Dogs vs Creek Cats · Spielszene 3"
+        }
+      ]
+    },
+    {
+      "heim": "River Rockets",
+      "gast": "Field Eagles",
+      "datum": "20.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1018/800/1000",
+          "title": "River Rockets vs Field Eagles · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1044/800/1000",
+          "title": "River Rockets vs Field Eagles · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1035/800/1000",
+          "title": "River Rockets vs Field Eagles · Spielszene 3"
+        }
+      ]
+    }
+  ]
+}

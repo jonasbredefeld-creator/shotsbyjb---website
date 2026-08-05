@@ -1,0 +1,44 @@
+{
+  "key": "kreisligaa",
+  "label": "Kreisliga A",
+  "spiele": [
+    {
+      "heim": "TSV Bergstetten",
+      "gast": "SV Grünau",
+      "datum": "27.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1062/800/1000",
+          "title": "TSV Bergstetten vs SV Grünau · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1084/800/1000",
+          "title": "TSV Bergstetten vs SV Grünau · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1074/800/1000",
+          "title": "TSV Bergstetten vs SV Grünau · Spielszene 3"
+        }
+      ]
+    },
+    {
+      "heim": "FC Talblick",
+      "gast": "SG Hochfeld",
+      "datum": "20.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1062/800/1000",
+          "title": "FC Talblick vs SG Hochfeld · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1084/800/1000",
+          "title": "FC Talblick vs SG Hochfeld · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1074/800/1000",
+          "title": "FC Talblick vs SG Hochfeld · Spielszene 3"
+        }
+      ]
+    }
+  ]
+}

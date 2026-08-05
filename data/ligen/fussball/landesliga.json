@@ -1,0 +1,44 @@
+{
+  "key": "landesliga",
+  "label": "Landesliga",
+  "spiele": [
+    {
+      "heim": "FC Nordstadt",
+      "gast": "SC Waldheim",
+      "datum": "27.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1015/800/1000",
+          "title": "FC Nordstadt vs SC Waldheim · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1018/800/1000",
+          "title": "FC Nordstadt vs SC Waldheim · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1025/800/1000",
+          "title": "FC Nordstadt vs SC Waldheim · Spielszene 3"
+        }
+      ]
+    },
+    {
+      "heim": "TSV Auental",
+      "gast": "SV Steinbach",
+      "datum": "20.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1015/800/1000",
+          "title": "TSV Auental vs SV Steinbach · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1018/800/1000",
+          "title": "TSV Auental vs SV Steinbach · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1025/800/1000",
+          "title": "TSV Auental vs SV Steinbach · Spielszene 3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "sportarten": [
+    {
+      "key": "fussball",
+      "label": "Fußball",
+      "cover": "https://picsum.photos/id/1069/600/450",
+      "ligen": [
+        {
+          "key": "oberliga",
+          "label": "Oberliga"
+        },
+        {
+          "key": "verbandsliga",
+          "label": "Verbandsliga"
+        },
+        {
+          "key": "landesliga",
+          "label": "Landesliga"
+        },
+        {
+          "key": "bezirksliga",
+          "label": "Bezirksliga"
+        },
+        {
+          "key": "kreisligaa",
+          "label": "Kreisliga A"
+        },
+        {
+          "key": "kreisligab",
+          "label": "Kreisliga B"
+        },
+        {
+          "key": "kreisligac",
+          "label": "Kreisliga C"
+        }
+      ]
+    },
+    {
+      "key": "basketball",
+      "label": "Basketball",
+      "cover": "https://picsum.photos/id/1084/600/450",
+      "ligen": [
+        {
+          "key": "bezirksliga",
+          "label": "Bezirksliga"
+        },
+        {
+          "key": "kreisliga",
+          "label": "Kreisliga"
+        }
+      ]
+    },
+    {
+      "key": "baseball",
+      "label": "Baseball",
+      "cover": "https://picsum.photos/id/1044/600/450",
+      "ligen": [
+        {
+          "key": "landesliga",
+          "label": "Landesliga"
+        },
+        {
+          "key": "kreisliga",
+          "label": "Kreisliga"
+        }
+      ]
+    },
+    {
+      "key": "fcwinterlingen",
+      "label": "FC Winterlingen",
+      "cover": "https://picsum.photos/id/1074/600/450",
+      "ligen": [
+        {
+          "key": "spiele",
+          "label": "Spiele"
+        }
+      ]
+    }
+  ]
+}

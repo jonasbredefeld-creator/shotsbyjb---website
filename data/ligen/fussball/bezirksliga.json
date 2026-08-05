@@ -1,0 +1,44 @@
+{
+  "key": "bezirksliga",
+  "label": "Bezirksliga",
+  "spiele": [
+    {
+      "heim": "SG Ostmark",
+      "gast": "VfB Rheinau",
+      "datum": "27.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1035/800/1000",
+          "title": "SG Ostmark vs VfB Rheinau · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1041/800/1000",
+          "title": "SG Ostmark vs VfB Rheinau · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1044/800/1000",
+          "title": "SG Ostmark vs VfB Rheinau · Spielszene 3"
+        }
+      ]
+    },
+    {
+      "heim": "TSV Feldkirch",
+      "gast": "FC Wiesengrund",
+      "datum": "20.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1035/800/1000",
+          "title": "TSV Feldkirch vs FC Wiesengrund · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1041/800/1000",
+          "title": "TSV Feldkirch vs FC Wiesengrund · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1044/800/1000",
+          "title": "TSV Feldkirch vs FC Wiesengrund · Spielszene 3"
+        }
+      ]
+    }
+  ]
+}

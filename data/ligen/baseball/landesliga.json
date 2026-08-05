@@ -1,0 +1,44 @@
+{
+  "key": "landesliga",
+  "label": "Landesliga",
+  "spiele": [
+    {
+      "heim": "Field Eagles",
+      "gast": "River Rockets",
+      "datum": "27.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1044/800/1000",
+          "title": "Field Eagles vs River Rockets · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1035/800/1000",
+          "title": "Field Eagles vs River Rockets · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1018/800/1000",
+          "title": "Field Eagles vs River Rockets · Spielszene 3"
+        }
+      ]
+    },
+    {
+      "heim": "Creek Cats",
+      "gast": "Diamond Dogs",
+      "datum": "20.07.2026",
+      "fotos": [
+        {
+          "url": "https://picsum.photos/id/1044/800/1000",
+          "title": "Creek Cats vs Diamond Dogs · Spielszene 1"
+        },
+        {
+          "url": "https://picsum.photos/id/1035/800/1000",
+          "title": "Creek Cats vs Diamond Dogs · Spielszene 2"
+        },
+        {
+          "url": "https://picsum.photos/id/1018/800/1000",
+          "title": "Creek Cats vs Diamond Dogs · Spielszene 3"
+        }
+      ]
+    }
+  ]
+}
