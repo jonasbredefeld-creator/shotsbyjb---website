@@ -96,7 +96,7 @@
     {
       "key": "kreisligab",
       "label": "Kreisliga B",
-      "cover": "https://picsum.photos/id/1050/800/1000",
+      "cover": "/assets/uploads/wuestenrot-bausparkasse-logo.jpg",
       "spiele": [
         {
           "heim": "FC Kleinstadt",
