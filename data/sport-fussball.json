@@ -51,7 +51,7 @@
     {
       "key": "kreisligaa",
       "label": "Kreisliga A",
-      "cover": "https://picsum.photos/id/1062/800/1000",
+      "cover": "/assets/uploads/wuestenrot-bausparkasse-logo.jpg",
       "spiele": [
         {
           "heim": "TSV Bergstetten",
