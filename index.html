@@ -198,6 +198,12 @@
 
 <main id="app"></main>
 
+<form name="contact" data-netlify="true" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <textarea name="message"></textarea>
+</form>
+
 <footer>
   <div class="footer-row">
     <div class="footer-brand">
@@ -218,75 +224,57 @@
 </footer>
 
 <script>
-const DATA = {
-  fussball: {
-    label: 'Fußball',
-    cover: 1069,
-    ligen: {
-      oberliga:      { label:'Oberliga',       spiele: makeSpiele([['FC Winterlingen','TSV Harthausen'], ['SV Beispielstadt','TSV Musterhausen']], [1074,1080,1043]) },
-      verbandsliga:  { label:'Verbandsliga',   spiele: makeSpiele([['SV Talkirchen','TuS Feldberg'], ['FC Rundstetten','SG Bergquell']], [1069,1050,1039]) },
-      landesliga:    { label:'Landesliga',     spiele: makeSpiele([['FC Nordstadt','SC Waldheim'], ['TSV Auental','SV Steinbach']], [1015,1018,1025]) },
-      bezirksliga:   { label:'Bezirksliga',    spiele: makeSpiele([['SG Ostmark','VfB Rheinau'], ['TSV Feldkirch','FC Wiesengrund']], [1035,1041,1044]) },
-      kreisligaa:    { label:'Kreisliga A',    spiele: makeSpiele([['TSV Bergstetten','SV Grünau'], ['FC Talblick','SG Hochfeld']], [1062,1084,1074]) },
-      kreisligab:    { label:'Kreisliga B',    spiele: makeSpiele([['FC Kleinstadt','SV Hügeldorf'], ['TSV Rotenbach','SC Lindenau']], [1050,1039,1015]) },
-      kreisligac:    { label:'Kreisliga C',    spiele: makeSpiele([['SC Hinterdorf','TSV Wiesental'], ['SV Waldrand','FC Grenzbach']], [1043,1069,1080]) },
-    }
-  },
-  basketball: {
-    label: 'Basketball',
-    cover: 1084,
-    ligen: {
-      bezirksliga: { label:'Bezirksliga', spiele: makeSpiele([['BC Talstadt','TSV Höhenkamm'], ['SG Rundhalle','BSC Nordkreis']], [1084,1062,1041]) },
-      kreisliga:   { label:'Kreisliga',   spiele: makeSpiele([['SG Nordkreis','BSC Rundhalle'], ['TSV Höhenkamm','BC Talstadt']], [1041,1084,1062]) },
-    }
-  },
-  baseball: {
-    label: 'Baseball',
-    cover: 1044,
-    ligen: {
-      landesliga: { label:'Landesliga', spiele: makeSpiele([['Field Eagles','River Rockets'], ['Creek Cats','Diamond Dogs']], [1044,1035,1018]) },
-      kreisliga:  { label:'Kreisliga',  spiele: makeSpiele([['Diamond Dogs','Creek Cats'], ['River Rockets','Field Eagles']], [1018,1044,1035]) },
-    }
-  },
-  fcwinterlingen: {
-    label: 'FC Winterlingen',
-    cover: 1074,
-    ligen: {
-      spiele: { label:'Spiele', spiele: makeSpiele([['FC Winterlingen','TSV Harthausen'], ['SV Grünau','FC Winterlingen'], ['FC Winterlingen','SC Lindenau']], [1074,1080,1043]) },
-    }
-  }
-};
+let DATA = {};
+let CONTENT = { about:{paragraphs:[]}, contact:{email:'',instagram:'#'}, works:[] };
+let GAME_INDEX = [];
 
-function makeSpiele(matchups, pids){
-  return matchups.map(([heim, gast], i) => ({
-    id: 'spiel-' + (i+1),
-    heim: heim,
-    gast: gast,
-    titel: `${heim} vs ${gast}`,
-    datum: i === 0 ? '27.07.2026' : '20.07.2026',
-    fotos: pids.map((pid, j) => ({
-      url: `https://picsum.photos/id/${pid}/800/1000`,
-      title: `${heim} vs ${gast} · Spielszene ${j+1}`
-    }))
-  }));
+async function loadContent(){
+  try{
+    const res = await fetch('/data/content.json', {cache:'no-store'});
+    const json = await res.json();
+    CONTENT = json;
+    DATA = {};
+    (json.sportarten || []).forEach(sport=>{
+      const ligenObj = {};
+      (sport.ligen || []).forEach(liga=>{
+        ligenObj[liga.key] = {
+          label: liga.label,
+          spiele: (liga.spiele || []).map((spiel, i)=>({
+            id: 'spiel-' + (i+1),
+            heim: spiel.heim,
+            gast: spiel.gast,
+            titel: `${spiel.heim} vs ${spiel.gast}`,
+            datum: spiel.datum,
+            fotos: spiel.fotos
+          }))
+        };
+      });
+      DATA[sport.key] = { label: sport.label, cover: sport.cover, ligen: ligenObj };
+    });
+  } catch(err){
+    console.error('Inhalte konnten nicht geladen werden', err);
+  }
+  buildGameIndex();
+  render();
 }
 
-const app = document.getElementById('app');
-
-// Durchsuchbarer Index aller Spiele über alle Sportarten/Ligen hinweg
-const GAME_INDEX = [];
-Object.entries(DATA).forEach(([sportKey, sport])=>{
-  Object.entries(sport.ligen).forEach(([ligaKey, liga])=>{
-    liga.spiele.forEach(spiel=>{
-      GAME_INDEX.push({
-        sportKey, sportLabel: sport.label,
-        ligaKey, ligaLabel: liga.label,
-        spiel,
-        searchText: `${spiel.titel} ${spiel.heim} ${spiel.gast} ${spiel.datum} ${liga.label} ${sport.label}`.toLowerCase()
+function buildGameIndex(){
+  GAME_INDEX = [];
+  Object.entries(DATA).forEach(([sportKey, sport])=>{
+    Object.entries(sport.ligen).forEach(([ligaKey, liga])=>{
+      liga.spiele.forEach(spiel=>{
+        GAME_INDEX.push({
+          sportKey, sportLabel: sport.label,
+          ligaKey, ligaLabel: liga.label,
+          spiel,
+          searchText: `${spiel.titel} ${spiel.heim} ${spiel.gast} ${spiel.datum} ${liga.label} ${sport.label}`.toLowerCase()
+        });
       });
     });
   });
-});
+}
+
+const app = document.getElementById('app');
 
 function bindSearch(){
   const input = document.getElementById('site-search');
@@ -329,7 +317,7 @@ document.querySelectorAll('.legal-link[data-route]').forEach(btn=>{
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => {
   if(!location.hash) location.hash = '#home';
-  render();
+  loadContent();
 });
 
 function render(){
@@ -405,18 +393,9 @@ function renderHome(){
       <h2>Meine Arbeiten</h2><div class="rule"></div>
     </div>
     <div class="works-grid">
-      ${[
-        {pid:1074, caption:'Kreisliga A, Saisonauftakt'},
-        {pid:1050, caption:'Verbandsliga, Auswärtsspiel'},
-        {pid:1041, caption:'Basketball, Bezirksliga'},
-        {pid:1018, caption:'Baseball, Landesliga'},
-        {pid:1069, caption:'Oberliga, Nachmittagsspiel'},
-        {pid:1062, caption:'Kreisliga B, Flutlichtspiel'},
-        {pid:1084, caption:'Basketball, Kreisliga'},
-        {pid:1044, caption:'Baseball, Kreisliga'}
-      ].map((w,i)=>`
+      ${(CONTENT.works || []).map((w,i)=>`
         <figure class="work-fig">
-          <div class="work-img"><img src="https://picsum.photos/id/${w.pid}/500/620" alt="Beispielbild ${i+1}" loading="lazy"></div>
+          <div class="work-img"><img src="${w.image}" alt="Beispielbild ${i+1}" loading="lazy"></div>
           <figcaption class="work-caption mono">${w.caption}</figcaption>
         </figure>`).join('')}
     </div>
@@ -425,9 +404,7 @@ function renderHome(){
       <h2>Über mich</h2><div class="rule"></div>
     </div>
     <div class="about-wrap-text">
-      <p>Am Spielfeldrand zuhause.</p>
-      <p>Hier kommt dein eigener Text hin: seit wann du Sport fotografierst, welches Equipment du nutzt, welche Vereine oder Ligen du regelmäßig begleitest.</p>
-      <p>Ersetz diesen Absatz einfach durch deine Worte — kurz und persönlich reicht völlig.</p>
+      ${(CONTENT.about?.paragraphs || []).map(p=>`<p>${p}</p>`).join('')}
     </div>
 
     <div class="section-label" id="kontakt-anchor">
@@ -437,20 +414,42 @@ function renderHome(){
       <div class="contact-info">
         <p>Bilder vom Spieltag? Meld dich einfach.</p>
         <div class="contact-links">
-          <a href="mailto:kontakt@deinename.de">kontakt@deinename.de</a>
-          <a href="#">Instagram</a>
+          <a href="mailto:${CONTENT.contact?.email || ''}">${CONTENT.contact?.email || ''}</a>
+          <a href="${CONTENT.contact?.instagram || '#'}">Instagram</a>
         </div>
       </div>
-      <form class="contact-form" onsubmit="return false;">
-        <input type="text" placeholder="Name" class="mono">
-        <input type="email" placeholder="E-Mail" class="mono">
-        <textarea placeholder="Nachricht" rows="4" class="mono"></textarea>
+      <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact">
+        <input type="text" name="name" placeholder="Name" class="mono" required>
+        <input type="email" name="email" placeholder="E-Mail" class="mono" required>
+        <textarea name="message" placeholder="Nachricht" rows="4" class="mono" required></textarea>
         <button type="submit" class="hero-cta" style="align-self:flex-start;">Senden</button>
+        <p id="contact-status" class="mono" style="font-size:0.75rem; color:var(--flood); display:none;"></p>
       </form>
     </div>
   `;
   bindNav();
   bindSearch();
+  bindContactForm();
+}
+
+function bindContactForm(){
+  const form = document.getElementById('contact-form');
+  if(!form) return;
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const status = document.getElementById('contact-status');
+    const data = new URLSearchParams(new FormData(form)).toString();
+    try{
+      await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: data });
+      form.reset();
+      status.textContent = 'Danke, deine Nachricht ist angekommen.';
+      status.style.display = 'block';
+    } catch(err){
+      status.textContent = 'Senden hat nicht geklappt, bitte per E-Mail melden.';
+      status.style.display = 'block';
+    }
+  });
 }
 
 function renderLegal(which){

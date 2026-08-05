@@ -1,0 +1,68 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "inhalte"
+    label: "Website-Inhalte"
+    files:
+      - name: "seite"
+        label: "Startseite"
+        file: "data/content.json"
+        fields:
+          - label: "Über mich"
+            name: "about"
+            widget: "object"
+            fields:
+              - {label: "Absätze", name: "paragraphs", widget: "list", field: {label: "Absatz", name: "text", widget: "text"}}
+          - label: "Kontakt"
+            name: "contact"
+            widget: "object"
+            fields:
+              - {label: "E-Mail", name: "email", widget: "string"}
+              - {label: "Instagram-Link", name: "instagram", widget: "string"}
+          - label: "Meine Arbeiten (Startseite)"
+            name: "works"
+            widget: "list"
+            label_singular: "Bild"
+            summary: "{{caption}}"
+            fields:
+              - {label: "Bild", name: "image", widget: "image"}
+              - {label: "Bildunterschrift", name: "caption", widget: "string"}
+          - label: "Sportarten"
+            name: "sportarten"
+            widget: "list"
+            label_singular: "Sportart"
+            summary: "{{label}}"
+            fields:
+              - {label: "Kürzel (keine Leerzeichen, z.B. fussball)", name: "key", widget: "string"}
+              - {label: "Name", name: "label", widget: "string"}
+              - {label: "Titelbild", name: "cover", widget: "image"}
+              - label: "Ligen"
+                name: "ligen"
+                widget: "list"
+                label_singular: "Liga"
+                summary: "{{label}}"
+                fields:
+                  - {label: "Kürzel (keine Leerzeichen)", name: "key", widget: "string"}
+                  - {label: "Name", name: "label", widget: "string"}
+                  - label: "Spiele"
+                    name: "spiele"
+                    widget: "list"
+                    label_singular: "Spiel"
+                    summary: "{{heim}} vs {{gast}} — {{datum}}"
+                    fields:
+                      - {label: "Heimteam", name: "heim", widget: "string"}
+                      - {label: "Gastteam", name: "gast", widget: "string"}
+                      - {label: "Datum", name: "datum", widget: "string", hint: "Format: TT.MM.JJJJ"}
+                      - label: "Fotos"
+                        name: "fotos"
+                        widget: "list"
+                        label_singular: "Foto"
+                        summary: "{{title}}"
+                        fields:
+                          - {label: "Bild", name: "url", widget: "image"}
+                          - {label: "Bildtitel", name: "title", widget: "string"}
