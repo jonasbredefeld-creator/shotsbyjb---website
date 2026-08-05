@@ -1,0 +1,97 @@
+{
+  "key": "basketball",
+  "label": "Basketball",
+  "cover": "https://picsum.photos/id/1084/600/450",
+  "ligen": [
+    {
+      "key": "bezirksliga",
+      "label": "Bezirksliga",
+      "cover": "https://picsum.photos/id/1084/800/1000",
+      "spiele": [
+        {
+          "heim": "BC Talstadt",
+          "gast": "TSV Höhenkamm",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1084/800/1000",
+              "title": "BC Talstadt vs TSV Höhenkamm · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1062/800/1000",
+              "title": "BC Talstadt vs TSV Höhenkamm · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1041/800/1000",
+              "title": "BC Talstadt vs TSV Höhenkamm · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "SG Rundhalle",
+          "gast": "BSC Nordkreis",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1084/800/1000",
+              "title": "SG Rundhalle vs BSC Nordkreis · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1062/800/1000",
+              "title": "SG Rundhalle vs BSC Nordkreis · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1041/800/1000",
+              "title": "SG Rundhalle vs BSC Nordkreis · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "kreisliga",
+      "label": "Kreisliga",
+      "cover": "https://picsum.photos/id/1041/800/1000",
+      "spiele": [
+        {
+          "heim": "SG Nordkreis",
+          "gast": "BSC Rundhalle",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1041/800/1000",
+              "title": "SG Nordkreis vs BSC Rundhalle · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1084/800/1000",
+              "title": "SG Nordkreis vs BSC Rundhalle · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1062/800/1000",
+              "title": "SG Nordkreis vs BSC Rundhalle · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "TSV Höhenkamm",
+          "gast": "BC Talstadt",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1041/800/1000",
+              "title": "TSV Höhenkamm vs BC Talstadt · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1084/800/1000",
+              "title": "TSV Höhenkamm vs BC Talstadt · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1062/800/1000",
+              "title": "TSV Höhenkamm vs BC Talstadt · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
