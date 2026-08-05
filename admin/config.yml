@@ -28,7 +28,7 @@ logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 site_url: https://jonasbredefeld-creator.github.io/shotsbyjb---website
 
 media_folder: "assets/uploads"
-public_folder: "assets/uploads"
+public_folder: "/shotsbyjb---website/assets/uploads"
 
 collections:
   - name: "startseite"
