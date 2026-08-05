@@ -1,0 +1,322 @@
+{
+  "key": "fussball",
+  "label": "Fußball",
+  "cover": "https://picsum.photos/id/1069/600/450",
+  "ligen": [
+    {
+      "key": "bezirksliga",
+      "label": "Bezirksliga",
+      "cover": "https://picsum.photos/id/1035/800/1000",
+      "spiele": [
+        {
+          "heim": "SG Ostmark",
+          "gast": "VfB Rheinau",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1035/800/1000",
+              "title": "SG Ostmark vs VfB Rheinau · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1041/800/1000",
+              "title": "SG Ostmark vs VfB Rheinau · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1044/800/1000",
+              "title": "SG Ostmark vs VfB Rheinau · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "TSV Feldkirch",
+          "gast": "FC Wiesengrund",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1035/800/1000",
+              "title": "TSV Feldkirch vs FC Wiesengrund · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1041/800/1000",
+              "title": "TSV Feldkirch vs FC Wiesengrund · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1044/800/1000",
+              "title": "TSV Feldkirch vs FC Wiesengrund · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "kreisligaa",
+      "label": "Kreisliga A",
+      "cover": "https://picsum.photos/id/1062/800/1000",
+      "spiele": [
+        {
+          "heim": "TSV Bergstetten",
+          "gast": "SV Grünau",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1062/800/1000",
+              "title": "TSV Bergstetten vs SV Grünau · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1084/800/1000",
+              "title": "TSV Bergstetten vs SV Grünau · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1074/800/1000",
+              "title": "TSV Bergstetten vs SV Grünau · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "FC Talblick",
+          "gast": "SG Hochfeld",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1062/800/1000",
+              "title": "FC Talblick vs SG Hochfeld · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1084/800/1000",
+              "title": "FC Talblick vs SG Hochfeld · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1074/800/1000",
+              "title": "FC Talblick vs SG Hochfeld · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "kreisligab",
+      "label": "Kreisliga B",
+      "cover": "https://picsum.photos/id/1050/800/1000",
+      "spiele": [
+        {
+          "heim": "FC Kleinstadt",
+          "gast": "SV Hügeldorf",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1050/800/1000",
+              "title": "FC Kleinstadt vs SV Hügeldorf · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1039/800/1000",
+              "title": "FC Kleinstadt vs SV Hügeldorf · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1015/800/1000",
+              "title": "FC Kleinstadt vs SV Hügeldorf · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "TSV Rotenbach",
+          "gast": "SC Lindenau",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1050/800/1000",
+              "title": "TSV Rotenbach vs SC Lindenau · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1039/800/1000",
+              "title": "TSV Rotenbach vs SC Lindenau · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1015/800/1000",
+              "title": "TSV Rotenbach vs SC Lindenau · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "kreisligac",
+      "label": "Kreisliga C",
+      "cover": "https://picsum.photos/id/1043/800/1000",
+      "spiele": [
+        {
+          "heim": "SC Hinterdorf",
+          "gast": "TSV Wiesental",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1043/800/1000",
+              "title": "SC Hinterdorf vs TSV Wiesental · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1069/800/1000",
+              "title": "SC Hinterdorf vs TSV Wiesental · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1080/800/1000",
+              "title": "SC Hinterdorf vs TSV Wiesental · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "SV Waldrand",
+          "gast": "FC Grenzbach",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1043/800/1000",
+              "title": "SV Waldrand vs FC Grenzbach · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1069/800/1000",
+              "title": "SV Waldrand vs FC Grenzbach · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1080/800/1000",
+              "title": "SV Waldrand vs FC Grenzbach · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "landesliga",
+      "label": "Landesliga",
+      "cover": "https://picsum.photos/id/1015/800/1000",
+      "spiele": [
+        {
+          "heim": "FC Nordstadt",
+          "gast": "SC Waldheim",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1015/800/1000",
+              "title": "FC Nordstadt vs SC Waldheim · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1018/800/1000",
+              "title": "FC Nordstadt vs SC Waldheim · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1025/800/1000",
+              "title": "FC Nordstadt vs SC Waldheim · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "TSV Auental",
+          "gast": "SV Steinbach",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1015/800/1000",
+              "title": "TSV Auental vs SV Steinbach · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1018/800/1000",
+              "title": "TSV Auental vs SV Steinbach · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1025/800/1000",
+              "title": "TSV Auental vs SV Steinbach · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "oberliga",
+      "label": "Oberliga",
+      "cover": "https://picsum.photos/id/1074/800/1000",
+      "spiele": [
+        {
+          "heim": "FC Winterlingen",
+          "gast": "TSV Harthausen",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1074/800/1000",
+              "title": "FC Winterlingen vs TSV Harthausen · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1080/800/1000",
+              "title": "FC Winterlingen vs TSV Harthausen · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1043/800/1000",
+              "title": "FC Winterlingen vs TSV Harthausen · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "SV Beispielstadt",
+          "gast": "TSV Musterhausen",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1074/800/1000",
+              "title": "SV Beispielstadt vs TSV Musterhausen · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1080/800/1000",
+              "title": "SV Beispielstadt vs TSV Musterhausen · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1043/800/1000",
+              "title": "SV Beispielstadt vs TSV Musterhausen · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "verbandsliga",
+      "label": "Verbandsliga",
+      "cover": "https://picsum.photos/id/1069/800/1000",
+      "spiele": [
+        {
+          "heim": "SV Talkirchen",
+          "gast": "TuS Feldberg",
+          "datum": "27.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1069/800/1000",
+              "title": "SV Talkirchen vs TuS Feldberg · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1050/800/1000",
+              "title": "SV Talkirchen vs TuS Feldberg · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1039/800/1000",
+              "title": "SV Talkirchen vs TuS Feldberg · Spielszene 3"
+            }
+          ]
+        },
+        {
+          "heim": "FC Rundstetten",
+          "gast": "SG Bergquell",
+          "datum": "20.07.2026",
+          "fotos": [
+            {
+              "url": "https://picsum.photos/id/1069/800/1000",
+              "title": "FC Rundstetten vs SG Bergquell · Spielszene 1"
+            },
+            {
+              "url": "https://picsum.photos/id/1050/800/1000",
+              "title": "FC Rundstetten vs SG Bergquell · Spielszene 2"
+            },
+            {
+              "url": "https://picsum.photos/id/1039/800/1000",
+              "title": "FC Rundstetten vs SG Bergquell · Spielszene 3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
