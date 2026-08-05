@@ -32,6 +32,10 @@
         {
           "key": "kreisligac",
           "label": "Kreisliga C"
+        },
+        {
+          "key": "kreisligad",
+          "label": "Kreisliga D"
         }
       ]
     },
