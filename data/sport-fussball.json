@@ -51,7 +51,7 @@
     {
       "key": "kreisligaa",
       "label": "Kreisliga A",
-      "cover": "/assets/uploads/img_2288.jpeg",
+      "cover": "/shotsbyjb---website/assets/uploads/wuestenrot-bausparkasse-logo.jpg",
       "spiele": [
         {
           "heim": "TSV Bergstetten",
@@ -96,7 +96,7 @@
     {
       "key": "kreisligab",
       "label": "Kreisliga B",
-      "cover": "/assets/uploads/img_2288.jpeg",
+      "cover": "/shotsbyjb---website/assets/uploads/ball.jpeg",
       "spiele": [
         {
           "heim": "FC Kleinstadt",
