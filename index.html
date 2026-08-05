@@ -193,17 +193,11 @@
     <button class="nav-link" data-route="#galerie">Galerie</button>
     <a class="nav-link" href="#ueber-anchor">Über mich</a>
     <a class="nav-link" href="#kontakt-anchor">Kontakt</a>
-    <a class="nav-link" href="/admin/">Admin</a>
+    <a class="nav-link" href="admin/">Admin</a>
   </nav>
 </header>
 
 <main id="app"></main>
-
-<form name="contact" data-netlify="true" hidden>
-  <input type="text" name="name">
-  <input type="email" name="email">
-  <textarea name="message"></textarea>
-</form>
 
 <footer>
   <div class="footer-row">
@@ -233,13 +227,13 @@ const SPORT_FILES = ['fussball', 'basketball', 'baseball', 'fcwinterlingen'];
 
 async function loadContent(){
   try{
-    const homeRes = await fetch('/data/home.json', {cache:'no-store'});
+    const homeRes = await fetch('data/home.json', {cache:'no-store'});
     const home = await homeRes.json();
     CONTENT = { about: home.about, contact: home.contact, works: home.works };
 
     const sportResults = await Promise.all(
       SPORT_FILES.map(key =>
-        fetch(`/data/sport-${key}.json`, {cache:'no-store'})
+        fetch(`data/sport-${key}.json`, {cache:'no-store'})
           .then(r => r.ok ? r.json() : null)
           .catch(() => null)
       )
@@ -433,8 +427,7 @@ function renderHome(){
           <a href="${CONTENT.contact?.instagram || '#'}">Instagram</a>
         </div>
       </div>
-      <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contact">
+      <form class="contact-form" id="contact-form">
         <input type="text" name="name" placeholder="Name" class="mono" required>
         <input type="email" name="email" placeholder="E-Mail" class="mono" required>
         <textarea name="message" placeholder="Nachricht" rows="4" class="mono" required></textarea>
@@ -451,19 +444,18 @@ function renderHome(){
 function bindContactForm(){
   const form = document.getElementById('contact-form');
   if(!form) return;
-  form.addEventListener('submit', async (e)=>{
+  form.addEventListener('submit', (e)=>{
     e.preventDefault();
     const status = document.getElementById('contact-status');
-    const data = new URLSearchParams(new FormData(form)).toString();
-    try{
-      await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: data });
-      form.reset();
-      status.textContent = 'Danke, deine Nachricht ist angekommen.';
-      status.style.display = 'block';
-    } catch(err){
-      status.textContent = 'Senden hat nicht geklappt, bitte per E-Mail melden.';
-      status.style.display = 'block';
-    }
+    const name = form.name.value;
+    const email = form.email.value;
+    const message = form.message.value;
+    const empfaenger = CONTENT.contact?.email || '';
+    const betreff = encodeURIComponent(`Nachricht über die Website von ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    window.location.href = `mailto:${empfaenger}?subject=${betreff}&body=${body}`;
+    status.textContent = 'Dein E-Mail-Programm öffnet sich gleich mit der Nachricht.';
+    status.style.display = 'block';
   });
 }
 
