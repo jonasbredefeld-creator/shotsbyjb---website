@@ -1,6 +1,9 @@
 backend:
   name: git-gateway
+  repo: DEIN-GITHUB-NAME/shotsbyjb-website
   branch: main
+  identity_url: https://auth.decapbridge.com/sites/DEINE-SITE-ID
+  gateway_url: https://gateway.decapbridge.com
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
