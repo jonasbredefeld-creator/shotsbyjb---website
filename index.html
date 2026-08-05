@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>shotsbyjb — Sportfotografie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root{
+    --bg: #0E0F11;
+    --bg-raised: #17181B;
+    --bg-card: #1D1E22;
+    --line: #2A2C30;
+    --ink: #F1EFE9;
+    --ink-dim: #9B9C9F;
+    --flood: #E8A33D;
+    --flood-dim: #B87F2C;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased;}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important; transition-duration:.01ms !important;}}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit;}
+  button{font:inherit;}
+
+  header{
+    position:sticky; top:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 40px; background:rgba(14,15,17,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex; align-items:center; cursor:pointer; background:none; border:none; padding:0;}
+  .logo-mark{width:72px; height:72px; flex-shrink:0;}
+  nav{display:flex; gap:6px; align-items:center;}
+  .nav-link{
+    display:inline-block; padding:10px 16px; font-family:'Oswald', sans-serif; font-weight:500; font-size:0.85rem;
+    letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; color:var(--ink);
+    background:none; border:none; cursor:pointer;
+  }
+  .nav-link:hover, .nav-link:focus-visible, .nav-link.active{color:var(--flood);}
+  @media (max-width:860px){header{padding:12px 20px;} .nav-link{padding:8px 10px; font-size:0.78rem;} .logo-mark{width:52px; height:52px;}}
+
+  main{min-height:60vh;}
+
+  .hero{position:relative; min-height:88vh; display:flex; align-items:flex-end; overflow:hidden; background:#000;}
+  .hero img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.55) saturate(1.05);}
+  .hero::before{content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 70% 55% at 50% 8%, rgba(232,163,61,0.22), transparent 60%),
+    linear-gradient(0deg, rgba(14,15,17,0.98) 0%, rgba(14,15,17,0.35) 45%, rgba(14,15,17,0.5) 100%);}
+  .hero-content{position:relative; z-index:2; padding:0 40px 64px; max-width:900px;}
+  .hero-eyebrow{font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--flood); letter-spacing:0.12em; margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+  .hero-eyebrow::before{content:''; width:8px; height:8px; border-radius:50%; background:var(--flood); box-shadow:0 0 10px 2px var(--flood);}
+  .hero h1{font-family:'Archivo Black', sans-serif; font-size:clamp(2.6rem, 7vw, 5.6rem); line-height:0.98; text-transform:uppercase;}
+  .hero p{margin-top:20px; font-size:1.05rem; color:var(--ink-dim); max-width:44ch; line-height:1.6;}
+  .hero-cta{margin-top:28px; display:inline-flex; align-items:center; gap:10px; background:var(--flood); color:#161206; padding:14px 24px; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; font-size:0.85rem; border:none; cursor:pointer;}
+  .hero-cta:hover{background:#fff;}
+  @media (max-width:600px){.hero-content{padding:0 20px 40px;}}
+
+  .section-label{display:flex; align-items:center; gap:14px; margin:90px 40px 28px;}
+  .section-label .num{font-family:'JetBrains Mono', monospace; color:var(--flood); font-size:0.85rem;}
+  .section-label h2{font-family:'Archivo Black', sans-serif; font-size:1.7rem; text-transform:uppercase; letter-spacing:0.01em;}
+  .section-label .rule{flex:1; height:1px; background:var(--line);}
+  @media (max-width:600px){.section-label{margin:60px 20px 20px;}}
+
+  .search-wrap{margin:0 40px 70px; padding:22px 26px; background:var(--bg-card); border:1px solid var(--line); position:relative;}
+  @media (max-width:600px){.search-wrap{margin:0 20px 50px; padding:16px 18px;}}
+  .search-label{font-size:0.7rem; color:var(--flood); letter-spacing:0.1em; margin-bottom:10px;}
+  .search-input{width:100%; background:var(--bg); border:1px solid var(--line); color:var(--ink); padding:13px 16px; font-size:1rem; font-family:'Inter', sans-serif;}
+  .search-input:focus{outline:none; border-color:var(--flood-dim);}
+  .search-results{position:absolute; left:26px; right:26px; top:100%; margin-top:4px; background:var(--bg-raised); border:1px solid var(--line); z-index:20; display:none; max-height:340px; overflow-y:auto;}
+  .search-results.visible{display:block;}
+  .search-result-item{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 16px; cursor:pointer; border-bottom:1px solid var(--line);}
+  .search-result-item:last-child{border-bottom:none;}
+  .search-result-item:hover, .search-result-item:focus-visible{background:#22242a;}
+  .sr-title{font-family:'Oswald', sans-serif; font-size:0.92rem; text-transform:uppercase;}
+  .sr-meta{font-family:'JetBrains Mono', monospace; font-size:0.66rem; color:var(--ink-dim);}
+  .search-no-results{padding:16px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--ink-dim);}
+
+  .works-grid{padding:0 40px 20px; display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
+  @media (max-width:900px){.works-grid{grid-template-columns:repeat(2, 1fr); padding:0 20px 10px;}}
+  .work-fig{background:var(--bg-raised); border:1px solid var(--line);}
+  .work-img{overflow:hidden;}
+  .work-img img{width:100%; height:auto; display:block; filter:grayscale(10%);}
+  .work-caption{display:block; padding:10px 12px; font-size:0.7rem; color:var(--ink-dim); border-top:1px dashed var(--line);}
+
+  .about-wrap-text{padding:0 40px 20px;}
+  @media (max-width:600px){.about-wrap-text{padding:0 20px 10px;}}
+  .about-wrap-text p{color:var(--ink-dim); line-height:1.75; margin-bottom:16px; max-width:66ch;}
+  .about-wrap-text p:first-child{font-family:'Oswald', sans-serif; font-size:1.35rem; color:var(--ink); font-weight:400;}
+
+  .contact-wrap{padding:0 40px 90px; display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:800px){.contact-wrap{grid-template-columns:1fr; padding:0 20px 60px;}}
+  .contact-info p{font-family:'Oswald', sans-serif; font-size:1.2rem; margin-bottom:18px; max-width:20ch;}
+  .contact-links{display:flex; gap:24px; flex-wrap:wrap; font-family:'JetBrains Mono', monospace; font-size:0.78rem;}
+  .contact-links a{text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .contact-links a:hover{border-color:var(--flood); color:var(--flood);}
+  .contact-form{display:flex; flex-direction:column; gap:12px;}
+  .contact-form input, .contact-form textarea{background:var(--bg-card); border:1px solid var(--line); color:var(--ink); padding:12px 14px; font-size:0.85rem; resize:vertical;}
+  .contact-form input:focus, .contact-form textarea:focus{outline:none; border-color:var(--flood-dim);}
+
+  .g-head{padding:48px 40px 8px;}
+  @media (max-width:600px){.g-head{padding:32px 20px 8px;}}
+  .breadcrumb{display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--ink-dim); margin-bottom:18px;}
+  .breadcrumb button{background:none; border:none; color:var(--ink-dim); cursor:pointer; padding:2px 0;}
+  .breadcrumb button:hover, .breadcrumb button:focus-visible{color:var(--flood);}
+  .breadcrumb .current{color:var(--ink);}
+  .breadcrumb .sep{color:var(--line);}
+  .g-title{font-family:'Archivo Black', sans-serif; font-size:clamp(1.8rem, 4vw, 2.8rem); text-transform:uppercase; margin-bottom:8px;}
+  .g-sub{color:var(--ink-dim); font-size:0.95rem; max-width:60ch; margin-bottom:8px;}
+
+  .card-grid{padding:24px 40px 100px; display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  @media (max-width:900px){.card-grid{grid-template-columns:repeat(2, 1fr);}}
+  @media (max-width:600px){.card-grid{grid-template-columns:1fr; padding:16px 20px 70px;}}
+
+  .tile{background:var(--bg-card); border:1px solid var(--line); cursor:pointer; text-align:left; display:block; position:relative; overflow:hidden;}
+  .tile:hover, .tile:focus-visible{border-color:var(--flood-dim);}
+  .tile-img{aspect-ratio:4/3; overflow:hidden; position:relative;}
+  .tile-img img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s cubic-bezier(.2,.7,.2,1); filter:brightness(0.75);}
+  .tile:hover .tile-img img{transform:scale(1.06); filter:brightness(0.9);}
+  .tile-body{padding:16px 18px 18px;}
+  .tile-name{font-family:'Oswald', sans-serif; font-size:1.15rem; text-transform:uppercase; letter-spacing:0.02em;}
+  .tile-meta{font-family:'JetBrains Mono', monospace; font-size:0.7rem; color:var(--ink-dim); margin-top:6px;}
+  .tile-arrow{position:absolute; top:14px; right:14px; width:30px; height:30px; border:1px solid rgba(255,255,255,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.9rem;}
+
+  .game-list{padding:24px 40px 100px; display:flex; flex-direction:column; gap:2px; background:var(--line);}
+  @media (max-width:600px){.game-list{padding:16px 20px 70px;}}
+  .game-row{background:var(--bg-card); display:grid; grid-template-columns:90px 1fr auto; gap:18px; align-items:center; padding:14px 18px; cursor:pointer; border:none; text-align:left; width:100%; color:var(--ink);}
+  .game-row:hover, .game-row:focus-visible{background:#22242a;}
+  .game-row img{width:90px; height:64px; object-fit:cover; filter:brightness(0.8);}
+  .game-title{font-family:'Oswald', sans-serif; font-size:1rem; text-transform:uppercase;}
+  .game-date{font-family:'JetBrains Mono', monospace; font-size:0.7rem; color:var(--ink-dim); margin-top:4px;}
+  .game-count{font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--flood); white-space:nowrap;}
+  @media (max-width:560px){.game-row{grid-template-columns:64px 1fr auto;} .game-row img{width:64px; height:48px;}}
+
+  .gallery{padding:24px 40px 100px; display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  @media (max-width:900px){.gallery{grid-template-columns:repeat(2, 1fr);}}
+  @media (max-width:560px){.gallery{grid-template-columns:1fr; padding:16px 20px 70px;}}
+  figure.plate-fig{background:var(--bg-raised); border:1px solid var(--line);}
+  .plate{position:relative; overflow:hidden;}
+  .plate img{width:100%; height:auto; display:block; transition:transform .7s cubic-bezier(.2,.7,.2,1);}
+  figure.plate-fig:hover .plate img{transform:scale(1.06);}
+  .plate-overlay{position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.85) 0%, transparent 45%); display:flex; flex-direction:column; justify-content:flex-end; padding:14px; opacity:0; transition:opacity .25s;}
+  figure.plate-fig:hover .plate-overlay, figure.plate-fig:focus-within .plate-overlay{opacity:1;}
+  .plate-overlay .mono{font-size:0.68rem; color:var(--flood); letter-spacing:0.04em;}
+  figcaption{padding:13px 15px 15px; display:flex; justify-content:space-between; align-items:flex-end; gap:10px;}
+  .cap-title{font-family:'Oswald', sans-serif; font-size:1rem; text-transform:uppercase; letter-spacing:0.02em;}
+  .cap-sub{font-family:'JetBrains Mono', monospace; font-size:0.66rem; color:var(--ink-dim); margin-top:3px;}
+  .dl-btn{flex-shrink:0; width:32px; height:32px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--ink-dim); transition:background .2s, color .2s, border-color .2s;}
+  .dl-btn:hover, .dl-btn:focus-visible{background:var(--flood); border-color:var(--flood); color:#161206;}
+  .dl-btn svg{width:14px; height:14px;}
+
+  .empty-state{grid-column:1/-1; padding:60px 20px; text-align:center; color:var(--ink-dim); font-family:'JetBrains Mono', monospace; font-size:0.85rem; border:1px dashed var(--line);}
+
+  .legal-text{padding:0 40px 100px; max-width:70ch;}
+  @media (max-width:600px){.legal-text{padding:0 20px 70px;}}
+  .legal-text p{margin-bottom:14px; line-height:1.7; color:var(--ink-dim);}
+  .legal-text p strong{color:var(--ink); font-family:'Oswald', sans-serif; font-weight:600; letter-spacing:0.01em;}
+  .legal-text .placeholder{background:var(--bg-card); border:1px dashed var(--line); padding:12px 14px; font-size:0.8rem; color:var(--flood-dim);}
+  .legal-text .hint{margin-top:24px; font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--ink-dim); border-top:1px solid var(--line); padding-top:16px;}
+
+  footer{background:var(--bg-raised); border-top:1px solid var(--line); padding:60px 40px 30px;}
+  footer h2{font-family:'Archivo Black', sans-serif; font-size:2rem; text-transform:uppercase; margin-bottom:20px; max-width:16ch;}
+  .contact-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; padding-top:22px; border-top:1px solid var(--line); margin-top:22px;}
+  .contact-links{display:flex; gap:26px; flex-wrap:wrap; font-family:'JetBrains Mono', monospace; font-size:0.76rem;}
+  .contact-links a{text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .contact-links a:hover{border-color:var(--flood); color:var(--flood);}
+  .copyright{font-family:'JetBrains Mono', monospace; font-size:0.66rem; color:var(--ink-dim);}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  .footer-brand{display:flex; align-items:center; gap:12px;}
+  .footer-brand .logo-mark{width:34px; height:34px; opacity:0.9;}
+  .legal-links{display:flex; align-items:center; gap:10px; font-size:0.7rem; color:var(--ink-dim);}
+  .legal-link{background:none; border:none; color:var(--ink-dim); cursor:pointer; padding:0; font-family:'JetBrains Mono', monospace; font-size:0.7rem; text-decoration:underline; text-underline-offset:2px;}
+  .legal-link:hover, .legal-link:focus-visible{color:var(--flood);}
+  .legal-links .sep{color:var(--line);}
+  @media (max-width:600px){footer{padding:40px 20px 24px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="logo" id="logo-home">
+    <svg class="logo-mark" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 17 V4 H17" stroke="#E8A33D" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      <path d="M69 56 V69 H56" stroke="#E8A33D" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      <text x="35" y="37" text-anchor="middle" font-size="24" font-weight="900" font-family="Arial, sans-serif" font-style="italic" fill="#F1EFE9">JB</text>
+      <text x="35" y="49" text-anchor="middle" font-size="6.5" font-family="Arial, sans-serif" fill="#E8A33D" letter-spacing="2">SHOTS BY</text>
+    </svg>
+  </button>
+  <nav>
+    <button class="nav-link" data-route="#home">Home</button>
+    <button class="nav-link" data-route="#galerie">Galerie</button>
+    <a class="nav-link" href="#ueber-anchor">Über mich</a>
+    <a class="nav-link" href="#kontakt-anchor">Kontakt</a>
+  </nav>
+</header>
+
+<main id="app"></main>
+
+<form name="contact" data-netlify="true" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <textarea name="message"></textarea>
+</form>
+
+<footer>
+  <div class="footer-row">
+    <div class="footer-brand">
+      <svg class="logo-mark" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 17 V4 H17" stroke="#E8A33D" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+        <path d="M69 56 V69 H56" stroke="#E8A33D" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+        <text x="35" y="37" text-anchor="middle" font-size="24" font-weight="900" font-family="Arial, sans-serif" font-style="italic" fill="#F1EFE9">JB</text>
+        <text x="35" y="49" text-anchor="middle" font-size="6.5" font-family="Arial, sans-serif" fill="#E8A33D" letter-spacing="2">SHOTS BY</text>
+      </svg>
+      <div class="copyright">© 2026 SHOTSBYJB — ALLE AUFNAHMEN VORBEHALTEN</div>
+    </div>
+    <div class="legal-links mono">
+      <button class="legal-link" data-route="#impressum">Impressum</button>
+      <span class="sep">·</span>
+      <button class="legal-link" data-route="#datenschutz">Datenschutz</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+let DATA = {};
+let CONTENT = { about:{paragraphs:[]}, contact:{email:'',instagram:'#'}, works:[] };
+let GAME_INDEX = [];
+
+const SPORT_FILES = ['fussball', 'basketball', 'baseball', 'fcwinterlingen'];
+
+async function loadContent(){
+  try{
+    const homeRes = await fetch('/data/home.json', {cache:'no-store'});
+    const home = await homeRes.json();
+    CONTENT = { about: home.about, contact: home.contact, works: home.works };
+
+    const sportResults = await Promise.all(
+      SPORT_FILES.map(key =>
+        fetch(`/data/sport-${key}.json`, {cache:'no-store'})
+          .then(r => r.ok ? r.json() : null)
+          .catch(() => null)
+      )
+    );
+
+    DATA = {};
+    sportResults.forEach((sport, idx)=>{
+      if(!sport) return;
+      const sportKey = sport.key || SPORT_FILES[idx];
+      const ligenObj = {};
+      (sport.ligen || []).forEach(liga=>{
+        ligenObj[liga.key] = {
+          label: liga.label,
+          cover: liga.cover,
+          spiele: (liga.spiele || []).map((spiel, i)=>({
+            id: 'spiel-' + (i+1),
+            heim: spiel.heim,
+            gast: spiel.gast,
+            titel: `${spiel.heim} vs ${spiel.gast}`,
+            datum: spiel.datum,
+            fotos: spiel.fotos || []
+          }))
+        };
+      });
+      DATA[sportKey] = { label: sport.label, cover: sport.cover, ligen: ligenObj };
+    });
+  } catch(err){
+    console.error('Inhalte konnten nicht geladen werden', err);
+  }
+  buildGameIndex();
+  render();
+}
+
+function buildGameIndex(){
+  GAME_INDEX = [];
+  Object.entries(DATA).forEach(([sportKey, sport])=>{
+    Object.entries(sport.ligen).forEach(([ligaKey, liga])=>{
+      liga.spiele.forEach(spiel=>{
+        GAME_INDEX.push({
+          sportKey, sportLabel: sport.label,
+          ligaKey, ligaLabel: liga.label,
+          spiel,
+          searchText: `${spiel.titel} ${spiel.heim} ${spiel.gast} ${spiel.datum} ${liga.label} ${sport.label}`.toLowerCase()
+        });
+      });
+    });
+  });
+}
+
+const app = document.getElementById('app');
+
+function bindSearch(){
+  const input = document.getElementById('site-search');
+  const results = document.getElementById('search-results');
+  if(!input) return;
+  input.addEventListener('input', ()=>{
+    const q = input.value.trim().toLowerCase();
+    if(q.length < 2){ results.classList.remove('visible'); results.innerHTML=''; return; }
+    const matches = GAME_INDEX.filter(g => g.searchText.includes(q)).slice(0, 8);
+    if(matches.length === 0){
+      results.innerHTML = `<div class="search-no-results">Keine Spiele gefunden.</div>`;
+    } else {
+      results.innerHTML = matches.map(m => `
+        <div class="search-result-item" data-nav="#galerie/${m.sportKey}/${m.ligaKey}/${m.spiel.id}">
+          <div>
+            <div class="sr-title">${m.spiel.titel}</div>
+            <div class="sr-meta">${m.sportLabel} · ${m.ligaLabel} · ${m.spiel.datum}</div>
+          </div>
+          <div class="sr-meta">${m.spiel.fotos.length} FOTOS</div>
+        </div>
+      `).join('');
+    }
+    results.classList.add('visible');
+    results.querySelectorAll('[data-nav]').forEach(el=>{
+      el.addEventListener('click', ()=>{ location.hash = el.dataset.nav; results.classList.remove('visible'); input.value=''; });
+    });
+  });
+  document.addEventListener('click', (e)=>{
+    if(!input.contains(e.target) && !results.contains(e.target)) results.classList.remove('visible');
+  });
+}
+document.getElementById('logo-home').addEventListener('click', () => location.hash = '#home');
+document.querySelectorAll('.nav-link[data-route]').forEach(btn=>{
+  btn.addEventListener('click', () => location.hash = btn.dataset.route);
+});
+document.querySelectorAll('.legal-link[data-route]').forEach(btn=>{
+  btn.addEventListener('click', () => location.hash = btn.dataset.route);
+});
+
+window.addEventListener('hashchange', render);
+window.addEventListener('DOMContentLoaded', () => {
+  if(!location.hash) location.hash = '#home';
+  loadContent();
+});
+
+function render(){
+  const hash = location.hash || '#home';
+  const parts = hash.replace('#','').split('/').filter(Boolean);
+
+  document.querySelectorAll('.nav-link[data-route]').forEach(b=>{
+    b.classList.toggle('active', hash.startsWith(b.dataset.route));
+  });
+
+  if(parts[0] === 'impressum'){ window.scrollTo(0,0); return renderLegal('impressum'); }
+  if(parts[0] === 'datenschutz'){ window.scrollTo(0,0); return renderLegal('datenschutz'); }
+
+  if(parts[0] === 'galerie'){
+    if(parts.length === 1) return renderSportauswahl();
+    const sport = DATA[parts[1]];
+    if(!sport) return renderSportauswahl();
+    if(parts.length === 2){
+      const ligaKeys = Object.keys(sport.ligen);
+      if(ligaKeys.length === 1){ location.hash = `#galerie/${parts[1]}/${ligaKeys[0]}`; return; }
+      return renderLigaauswahl(parts[1], sport);
+    }
+    const liga = sport.ligen[parts[2]];
+    if(!liga) return renderLigaauswahl(parts[1], sport);
+    if(parts.length === 3) return renderSpielauswahl(parts[1], sport, parts[2], liga);
+    const spiel = liga.spiele.find(s => s.id === parts[3]);
+    if(!spiel) return renderSpielauswahl(parts[1], sport, parts[2], liga);
+    return renderFotos(parts[1], sport, parts[2], liga, spiel);
+  }
+  renderHome();
+  if(hash === '#home' || hash === '' || hash === '#'){
+    window.scrollTo(0,0);
+  } else {
+    const target = document.getElementById(hash.slice(1));
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function crumbHtml(items){
+  return `<div class="breadcrumb mono">` + items.map((it,i)=>{
+    const sep = i>0 ? `<span class="sep">/</span>` : '';
+    if(it.hash){
+      return `${sep}<button data-nav="${it.hash}">${it.label}</button>`;
+    }
+    return `${sep}<span class="current">${it.label}</span>`;
+  }).join('') + `</div>`;
+}
+function bindNav(){
+  app.querySelectorAll('[data-nav]').forEach(el=>{
+    el.addEventListener('click', () => location.hash = el.dataset.nav);
+  });
+}
+
+function renderHome(){
+  app.innerHTML = `
+    <section class="hero">
+      <img src="https://picsum.photos/id/1074/1600/1000" alt="Spielszene">
+      <div class="hero-content">
+        <div class="hero-eyebrow mono">SAISON 2025/26 · IN ARBEIT</div>
+        <h1>Jeder Spielzug<br>ein Bild wert.</h1>
+        <p>Sportfotografie aus der Region — von der Kreisliga C bis zur Oberliga, dazu Basketball und Baseball. Bilder direkt zum Download.</p>
+        <button class="hero-cta" data-nav="#galerie">Zur Galerie →</button>
+      </div>
+    </section>
+
+    <div class="search-wrap">
+      <div class="search-label mono">SCHNELLSUCHE</div>
+      <input type="text" id="site-search" class="search-input" placeholder="Verein, Team oder Datum eingeben …" autocomplete="off">
+      <div id="search-results" class="search-results"></div>
+    </div>
+
+    <div class="section-label" id="arbeiten-anchor">
+      <h2>Meine Arbeiten</h2><div class="rule"></div>
+    </div>
+    <div class="works-grid">
+      ${(CONTENT.works || []).map((w,i)=>`
+        <figure class="work-fig">
+          <div class="work-img"><img src="${w.image}" alt="Beispielbild ${i+1}" loading="lazy"></div>
+          <figcaption class="work-caption mono">${w.caption}</figcaption>
+        </figure>`).join('')}
+    </div>
+
+    <div class="section-label" id="ueber-anchor">
+      <h2>Über mich</h2><div class="rule"></div>
+    </div>
+    <div class="about-wrap-text">
+      ${(CONTENT.about?.paragraphs || []).map(p=>`<p>${p}</p>`).join('')}
+    </div>
+
+    <div class="section-label" id="kontakt-anchor">
+      <h2>Kontakt</h2><div class="rule"></div>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p>Bilder vom Spieltag? Meld dich einfach.</p>
+        <div class="contact-links">
+          <a href="mailto:${CONTENT.contact?.email || ''}">${CONTENT.contact?.email || ''}</a>
+          <a href="${CONTENT.contact?.instagram || '#'}">Instagram</a>
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact">
+        <input type="text" name="name" placeholder="Name" class="mono" required>
+        <input type="email" name="email" placeholder="E-Mail" class="mono" required>
+        <textarea name="message" placeholder="Nachricht" rows="4" class="mono" required></textarea>
+        <button type="submit" class="hero-cta" style="align-self:flex-start;">Senden</button>
+        <p id="contact-status" class="mono" style="font-size:0.75rem; color:var(--flood); display:none;"></p>
+      </form>
+    </div>
+  `;
+  bindNav();
+  bindSearch();
+  bindContactForm();
+}
+
+function bindContactForm(){
+  const form = document.getElementById('contact-form');
+  if(!form) return;
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const status = document.getElementById('contact-status');
+    const data = new URLSearchParams(new FormData(form)).toString();
+    try{
+      await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: data });
+      form.reset();
+      status.textContent = 'Danke, deine Nachricht ist angekommen.';
+      status.style.display = 'block';
+    } catch(err){
+      status.textContent = 'Senden hat nicht geklappt, bitte per E-Mail melden.';
+      status.style.display = 'block';
+    }
+  });
+}
+
+function renderLegal(which){
+  document.querySelectorAll('.nav-link[data-route]').forEach(b=>b.classList.remove('active'));
+  const isImpressum = which === 'impressum';
+  app.innerHTML = `
+    <div class="g-head">
+      ${crumbHtml([{label: isImpressum ? 'Impressum' : 'Datenschutz'}])}
+      <div class="g-title">${isImpressum ? 'Impressum' : 'Datenschutzerklärung'}</div>
+    </div>
+    <div class="legal-text">
+      ${isImpressum ? `
+        <p><strong>Angaben gemäß § 5 DDG (ehem. § 5 TMG)</strong></p>
+        <p class="placeholder mono">[ Dein vollständiger Name ]<br>[ Straße, Hausnummer ]<br>[ PLZ, Ort ]</p>
+        <p><strong>Kontakt</strong></p>
+        <p class="placeholder mono">Telefon: [ Deine Telefonnummer ]<br>E-Mail: kontakt@deinename.de</p>
+        <p><strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</strong></p>
+        <p class="placeholder mono">[ Dein vollständiger Name, Anschrift wie oben ]</p>
+        <p class="hint">Dies ist ein Platzhalter — die genauen Pflichtangaben (Name, ladungsfähige Anschrift, Kontaktdaten) trägst du hier später selbst über das CMS ein. Ein Impressum ist in Deutschland für praktisch jede öffentlich erreichbare Website vorgeschrieben, auch für private Portfolio-Seiten mit Kontaktmöglichkeit.</p>
+      ` : `
+        <p><strong>1. Verantwortliche Stelle</strong></p>
+        <p class="placeholder mono">[ Dein Name, Anschrift, E-Mail — wie im Impressum ]</p>
+        <p><strong>2. Erhebung und Speicherung personenbezogener Daten</strong></p>
+        <p>Diese Website nutzt aktuell [ Hosting-Anbieter einfügen, z. B. Netlify ]. Beim Aufruf der Seite werden automatisch technische Daten (z. B. IP-Adresse, Zugriffszeit) durch den Hosting-Anbieter verarbeitet.</p>
+        <p><strong>3. Kontaktformular</strong></p>
+        <p>Wenn du das Kontaktformular nutzt, werden die eingegebenen Daten (Name, E-Mail, Nachricht) zur Bearbeitung deiner Anfrage gespeichert und nicht an Dritte weitergegeben.</p>
+        <p><strong>4. Deine Rechte</strong></p>
+        <p>Du hast jederzeit das Recht auf Auskunft, Berichtigung oder Löschung deiner gespeicherten Daten.</p>
+        <p class="hint">Dies ist ein Platzhalter-Text, keine Rechtsberatung. Je nachdem, welche Tools du am Ende einbindest (Hosting, Statistik, Kontaktformular-Anbieter), muss der Text angepasst werden — im Zweifel lohnt sich ein kurzer Blick in einen kostenlosen Datenschutz-Generator oder bei einem Anwalt.</p>
+      `}
+    </div>
+  `;
+  bindNav();
+}
+
+function renderSportauswahl(){
+  app.innerHTML = `
+    <div class="g-head">
+      ${crumbHtml([{label:'Galerie'}])}
+      <div class="g-title">Galerie</div>
+      <div class="g-sub">Wähl eine Sportart, um zu den Ligen und Spielen zu kommen.</div>
+    </div>
+    <div class="card-grid">
+      ${Object.entries(DATA).map(([key, sport])=>`
+        <button class="tile" data-nav="#galerie/${key}">
+          <div class="tile-img"><img src="https://picsum.photos/id/${sport.cover}/600/450" alt="${sport.label}"></div>
+          <div class="tile-body">
+            <div class="tile-name">${sport.label}</div>
+            <div class="tile-meta">${Object.keys(sport.ligen).length} LIGEN</div>
+          </div>
+          <div class="tile-arrow">→</div>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  bindNav();
+}
+
+function renderLigaauswahl(sportKey, sport){
+  app.innerHTML = `
+    <div class="g-head">
+      ${crumbHtml([{label:'Galerie', hash:'#galerie'}, {label:sport.label}])}
+      <div class="g-title">${sport.label}</div>
+      <div class="g-sub">Wähl eine Liga.</div>
+    </div>
+    <div class="card-grid">
+      ${Object.entries(sport.ligen).map(([key, liga])=>`
+        <button class="tile" data-nav="#galerie/${sportKey}/${key}">
+          <div class="tile-img"><img src="${liga.cover || sport.cover}" alt="${liga.label}" loading="lazy"></div>
+          <div class="tile-body">
+            <div class="tile-name">${liga.label}</div>
+            <div class="tile-meta">${liga.spiele.length} SPIELE</div>
+          </div>
+          <div class="tile-arrow">→</div>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  bindNav();
+}
+
+function renderSpielauswahl(sportKey, sport, ligaKey, liga){
+  app.innerHTML = `
+    <div class="g-head">
+      ${crumbHtml([{label:'Galerie', hash:'#galerie'}, {label:sport.label, hash:'#galerie/'+sportKey}, {label:liga.label}])}
+      <div class="g-title">${liga.label}</div>
+      <div class="g-sub">${sport.label} — wähl ein Spiel.</div>
+    </div>
+    <div class="game-list">
+      ${liga.spiele.map(spiel=>`
+        <button class="game-row" data-nav="#galerie/${sportKey}/${ligaKey}/${spiel.id}">
+          <img src="${spiel.fotos[0]?.url || ''}" alt="${spiel.titel}">
+          <div>
+            <div class="game-title">${spiel.titel}</div>
+            <div class="game-date mono">${spiel.datum}</div>
+          </div>
+          <div class="game-count">${spiel.fotos.length} FOTOS</div>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  bindNav();
+}
+
+function renderFotos(sportKey, sport, ligaKey, liga, spiel){
+  app.innerHTML = `
+    <div class="g-head">
+      ${crumbHtml([
+        {label:'Galerie', hash:'#galerie'},
+        {label:sport.label, hash:'#galerie/'+sportKey},
+        {label:liga.label, hash:'#galerie/'+sportKey+'/'+ligaKey},
+        {label:spiel.titel}
+      ])}
+      <div class="g-title">${spiel.titel}</div>
+      <div class="g-sub mono">${liga.label} · ${spiel.datum}</div>
+    </div>
+    <div class="gallery">
+      ${spiel.fotos.map((foto, i)=>`
+        <figure class="plate-fig">
+          <div class="plate">
+            <img src="${foto.url}" alt="${foto.title}" loading="lazy">
+            <div class="plate-overlay"><span class="mono">N°${String(i+1).padStart(3,'0')}</span></div>
+          </div>
+          <figcaption>
+            <div>
+              <div class="cap-title">${foto.title}</div>
+              <div class="cap-sub">${spiel.datum}</div>
+            </div>
+            <a class="dl-btn" href="${foto.url}" download="${foto.title.replace(/\s+/g,'_')}.jpg" title="Bild herunterladen" aria-label="Bild herunterladen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v13"></path><path d="M7 11l5 5 5-5"></path><path d="M5 21h14"></path>
+              </svg>
+            </a>
+          </figcaption>
+        </figure>
+      `).join('')}
+    </div>
+  `;
+  bindNav();
+}
+</script>
+
+<script>
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on('login', () => { window.location.href = '/admin/'; });
+}
+</script>
+</body>
+</html>
