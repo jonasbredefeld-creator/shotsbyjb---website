@@ -6,7 +6,6 @@
 <title>shotsbyjb — Sportfotografie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
   :root{
     --bg: #0E0F11;
@@ -194,6 +193,7 @@
     <button class="nav-link" data-route="#galerie">Galerie</button>
     <a class="nav-link" href="#ueber-anchor">Über mich</a>
     <a class="nav-link" href="#kontakt-anchor">Kontakt</a>
+    <a class="nav-link" href="/admin/">Admin</a>
   </nav>
 </header>
 
@@ -607,10 +607,5 @@ function renderFotos(sportKey, sport, ligaKey, liga, spiel){
 }
 </script>
 
-<script>
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.on('login', () => { window.location.href = '/admin/'; });
-}
-</script>
 </body>
 </html>
