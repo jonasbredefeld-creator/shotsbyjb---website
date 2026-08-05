@@ -6,7 +6,7 @@
     {
       "key": "bezirksliga",
       "label": "Bezirksliga",
-      "cover": "/assets/uploads/wuestenrot-bausparkasse-logo.jpg",
+      "cover": "/assets/uploads/img_2288.jpeg",
       "spiele": [
         {
           "heim": "SG Ostmark",
@@ -51,7 +51,7 @@
     {
       "key": "kreisligaa",
       "label": "Kreisliga A",
-      "cover": "/assets/uploads/wuestenrot-bausparkasse-logo.jpg",
+      "cover": "/assets/uploads/img_2288.jpeg",
       "spiele": [
         {
           "heim": "TSV Bergstetten",
