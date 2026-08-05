@@ -1,0 +1,47 @@
+{
+  "about": {
+    "paragraphs": [
+      "Am Spielfeldrand zuhause.",
+      "Hier kommt dein eigener Text hin: seit wann du Sport fotografierst, welches Equipment du nutzt, welche Vereine oder Ligen du regelmäßig begleitest.",
+      "Ersetz diesen Absatz einfach durch deine Worte — kurz und persönlich reicht völlig."
+    ]
+  },
+  "contact": {
+    "email": "kontakt@deinename.de",
+    "instagram": "#"
+  },
+  "works": [
+    {
+      "image": "https://picsum.photos/id/1074/500/620",
+      "caption": "Kreisliga A, Saisonauftakt"
+    },
+    {
+      "image": "https://picsum.photos/id/1050/500/620",
+      "caption": "Verbandsliga, Auswärtsspiel"
+    },
+    {
+      "image": "https://picsum.photos/id/1041/500/620",
+      "caption": "Basketball, Bezirksliga"
+    },
+    {
+      "image": "https://picsum.photos/id/1018/500/620",
+      "caption": "Baseball, Landesliga"
+    },
+    {
+      "image": "https://picsum.photos/id/1069/500/620",
+      "caption": "Oberliga, Nachmittagsspiel"
+    },
+    {
+      "image": "https://picsum.photos/id/1062/500/620",
+      "caption": "Kreisliga B, Flutlichtspiel"
+    },
+    {
+      "image": "https://picsum.photos/id/1084/500/620",
+      "caption": "Basketball, Kreisliga"
+    },
+    {
+      "image": "https://picsum.photos/id/1044/500/620",
+      "caption": "Baseball, Kreisliga"
+    }
+  ]
+}
